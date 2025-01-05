@@ -2,9 +2,10 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=1170px, height=2532px, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
     <title>2025_연하장_솟대와_장승</title>
     <link href="https://fonts.googleapis.com/css2?family=Pretendard&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
     <style>
         body {
             font-family: 'Pretendard', sans-serif;
@@ -26,7 +27,7 @@
             width: calc(100% - 100px);
             max-width: 500px;
             z-index: 1;
-        }   
+        }
 
         #page2 button {
             display: block;
@@ -150,17 +151,15 @@
         <h1>더 나은 세상을 향해<br>나아가는 당신에게</h1>
         <p id="display-text"></p>
         <button onclick="goToPage3()">연하장 뒷면 보기</button>
-        <button onclick="sharePage()">글 공유하기</button>
+        <button onclick="downloadPage2AsImage()">글 다운로드</button>
     </div>
 
     <div id="page3" class="container hidden">
-        <img src="./디지털솟대와장승 배경화면.png" alt="Background Image" style="display:block; margin-left:auto; margin-right:auto;">
+        <img src="./디지털솟대와장승 배경화면.png" alt="Background Image" style="display:block; margin-left:auto; margin-right:auto;">
         <p style="text-align:center; font-size: 14px; color: white; margin-top: 20px; position: relative; top: 50%; transform: translateY(50%);">《수호신, the cheering stick》<br>다운받아 배경화면으로 사용하세요!</p>
         <button onclick="downloadBackground()">이미지 저장하기</button>
+        <button onclick="sharePage()">🔗</button>
     </div>
-    
-    
-    
 
     <script>
         function adjustTextAreaFontSize() {
@@ -189,9 +188,18 @@
 
         function downloadBackground() {
             const link = document.createElement('a');
-            link.href = './디지털솟대와장승 배경화면.png';
-            link.download = './디지털솟대와장승 배경화면.png';
+            link.href = './디지털솟대와장승 배경화면.png';
+            link.download = './디지털솟대와장승 배경화면.png';
             link.click();
+        }
+
+        function downloadPage2AsImage() {
+            html2canvas(document.getElementById('page2')).then(function(canvas) {
+                const link = document.createElement('a');
+                link.href = canvas.toDataURL();
+                link.download = 'page2.png';
+                link.click();
+            });
         }
 
         function sharePage() {
